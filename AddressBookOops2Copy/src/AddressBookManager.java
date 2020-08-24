@@ -4,11 +4,12 @@ import java.util.Scanner;
 public class AddressBookManager implements AddressBookManagerInterface {
 	public String fileName;
 	public String fileuse;
+	public String option;
 	public FileReader fr;
 	public FileWriter fileWriter;
 	public BufferedWriter bw;
 	public static File file;
-	public static String path ="E:\\Pradip\\AddressBookOops2Copy\\csv\\";
+	public static String path = "E:\\Pradip\\AddressBookOops2Copy\\csv\\";
 	public static Scanner sc = new Scanner(System.in);
 
 	@Override
@@ -87,41 +88,50 @@ public class AddressBookManager implements AddressBookManagerInterface {
 	public FileWriter openaddressbook() throws ReflectiveOperationException, RuntimeException, IOException {
 		AddressBook AddressBook = new AddressBook();
 		fileuse = AddressBook.acess();
-		if (fileuse != null) {
-			fileuse = fileuse;
-			System.out.println("Please Enter Your Choice \n");
-			System.out.println("1) Add Person \n" + "2) Edit Person \n" + "3) Delete Person \n" + "4) Search Person \n"
-					+ "5) Sort ByZip \n" + "6) Sort ByName \n" + "7) Display");
-			int ch2 = sc.nextInt();
-			switch (ch2) {
-			case 1:
-				AddressBook.addperson(fileuse);
-				break;
-			case 2:
-				AddressBook.editperson(fileuse);
-				break;
-			case 3:
-				AddressBook.deleteperson(fileuse);
-				break;
-			case 4:
-				AddressBook.searchperson(fileuse);
-				break;
-			case 5:
-				AddressBook.sortbyzipperson(fileuse);
-				break;
-			case 6:
-				AddressBook.sortbynameperson(fileuse);
-				break;
-			case 7:
-				AddressBook.Display(fileuse);
-				break;
-			default:
-				System.out.println("enter correct choice");
+		
+			if (fileuse != null) {
+				do {
+				fileuse = fileuse;
+				System.out.println("Please Enter Your Choice \n");
+				System.out.println("1) Add Person \n" + "2) Edit Person \n" + "3) Delete Person \n"
+						+ "4) Search Person \n" + "5) Sort ByZip \n" + "6) Sort ByName \n" + "7) Display");
+				int ch2 = sc.nextInt();
+				switch (ch2) {
+				case 1:
+					AddressBook.addperson(fileuse);
+					break;
+				case 2:
+					AddressBook.editperson(fileuse);
+					break;
+				case 3:
+					AddressBook.deleteperson(fileuse);
+					break;
+				case 4:
+					AddressBook.searchperson(fileuse);
+					break;
+				case 5:
+					AddressBook.sortbyzipperson(fileuse);
+					break;
+				case 6:
+					AddressBook.sortbynameperson(fileuse);
+					break;
+				case 7:
+					AddressBook.Display(fileuse);
+					break;
+				default:
+					System.out.println("enter correct choice");
+				}
+				System.out.println("Do You Want to Continue Y/N");
+				option=sc.next();
+			}while(option.equalsIgnoreCase("Y"));
 			}
-		} else {
-			System.out.println("Book not Present Create First and save Book");
-		}
-		return null;
+			else {
+				System.out.println("Book not Present Create First and save Book");
+			}
+
+			return null;
+
+		
 
 	}
 
